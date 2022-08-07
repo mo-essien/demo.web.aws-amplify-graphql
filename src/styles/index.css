@@ -1,6 +1,9 @@
 *,
 *::after,
-*::before { box-sizing: border-box; }
+*::before {
+  box-sizing: border-box;
+  cursor: default;
+}
 
 body {
   margin: 0;
