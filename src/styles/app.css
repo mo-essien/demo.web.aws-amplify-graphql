@@ -1,3 +1,90 @@
-.App > .Title {
-	text-align: center;
+.App {
+	display: flex;
+	flex-direction: column;
+	font-size: 12px;
+	height: 100%;
+	position: fixed;
+	width: 100%;
+}
+
+.App > * { padding: 0 2em; }
+
+.App > .Nav {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+}
+
+.App > .Nav > .Logo { font-weight: 700; }
+.App > .Nav > .Auth {
+	cursor: pointer;
+	font-size: 0.75em;
+}
+
+.App > .Collections {
+	flex-grow: 1;
+	position: relative;
+}
+/* .App > .Collections > .Collection > :not(.Author) { display: none; } */
+.App > .Collections > .Collection > .Viewers { padding: 0 4em; }
+.App > .Collections > .Collection.Active > :not(.Author) { display: initial; }
+
+.App > .Collections > .Collection > .Brief:not(:last-child) { margin-bottom: 1em; }
+
+.App > .Collections > .Collection > .Brief > .crud_actions {
+	color: #ffffff;
+	display: flex;
+	justify-content: flex-end;
+}
+.App > .Collections > .Collection > .Brief > .crud_actions > * {
+	align-items: center;
+	aspect-ratio: 1 / 1;
+	border-radius: 5px;
+	display: flex;
+	height: 2.25em;
+	justify-content: center;
+}
+.App > .Collections > .Collection > .Brief > .crud_actions > .add { background-color: green;}
+.App > .Collections > .Collection > .Brief > .crud_actions > .delete { background-color: red;}
+.App > .Collections > .Collection > .Brief > .name {
+	font-size: 1.15em;
+	font-weight: 700;
+}
+.App > .Collections > .Collection > .Brief > .date_created { font-weight: 300; }
+
+.App > .Collections > .NewEntry {
+	align-items: center;
+	aspect-ratio: 1 / 1;
+	background: rgba(255, 255, 255, 0.25);
+	border-radius: 50%;
+	bottom: 1em;
+	cursor: pointer;
+	display: flex;
+	height: 2.5em;
+	justify-content: center;
+	position: absolute;
+	right: 1em;
+}
+.App > .Collections > .NewEntry:hover { background: rgba(255, 255, 255, 0.5); }
+
+.App > .Modal-Open {
+	align-items: center;
+	background: rgba(255, 255, 255, 0.25);
+	backdrop-filter: blur(5px);
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	position: fixed;
+	width: 100%;
+}
+.App > .Modal-Close { display: none; }
+.App > .Modal-Open > .Modal {
+	background: rgba(255, 255, 255, 1.0);
+	border-radius: 5px;
+	color: #000;
+	height: fit-content;
+	max-height: 75%;
+	min-height: fit-content;
+	padding: 1em;
+	width: 60%;
 }
