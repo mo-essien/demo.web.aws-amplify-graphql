@@ -1,0 +1,52 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+# input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type Collection @model @auth(rules: [{
+  allow: public,
+  operations: [
+    create,
+    read,
+    update,
+    delete
+  ],
+  provider: apiKey
+}]) @searchable {
+  id: ID!
+  title: String!
+  description: String
+  collectionItems: [CollectionItem] @hasMany
+}
+
+type CollectionItem @model @auth(rules: [{
+  allow: public,
+  operations: [
+    create,
+    read,
+    update,
+    delete
+  ],
+  provider: apiKey
+}]) {
+  id: ID!
+  title: String!
+  quantity: Int
+  done: Boolean
+  collection: Collection @hasOne
+  actions: [Action] @hasMany
+}
+
+type Action @model @auth(rules: [{
+  allow: public,
+  operations: [
+    create,
+    read,
+    update,
+    delete
+  ],
+  provider: apiKey
+}]) {
+  id: ID!
+  action: String
+  collectionItem: CollectionItem @hasOne
+}
