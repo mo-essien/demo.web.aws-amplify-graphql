@@ -1,0 +1,16 @@
+{
+  "resourceName": "UdemyAppBucket",
+  "policyUUID": "dce64826",
+  "bucketName": "demoamplifyudemyb7c5eeca9e4d4db396d05e374742ab3",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
