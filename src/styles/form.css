@@ -1,0 +1,35 @@
+form,
+form .field {
+	display: flex;
+	flex-direction: column;
+}
+
+button, input, textarea { 
+	border-radius: 5px;
+	font-size: 0.75em;
+	padding: 0.75em;
+}
+
+input, textarea { border: 1px solid rgba(0, 0, 0, 0.25); }
+
+textarea {
+	min-height: 7em;
+	resize: none;
+}
+
+form .field { margin-bottom: 1em; }
+form .field > label { font-weight: 700; }
+
+form .button_set {
+	display: flex;
+	justify-content: flex-end;
+}
+form .button_set > * {
+	background: rgba(0, 0, 0, 0.75);
+	border: none;
+	color: rgba(255, 255, 255, 0.75);
+	cursor: pointer;
+} 
+form .button_set > :not(:last-child) { margin-right: 1em; }
+form .button_set > [type = "reset"] { background: red; }
+form .button_set > [type = "submit"] { background: green; }
