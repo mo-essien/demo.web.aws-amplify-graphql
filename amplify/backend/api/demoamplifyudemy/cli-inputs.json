@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "demoamplifyudemy",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "D:\\programming\\demo.web.aws-amplify-graphql\\amplify\\backend\\api\\demoamplifyudemy\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authdemoamplifyudemyf1b0889c"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 365,
+        "apiKeyExpirationDate": "2023-08-02T11:13:03.238Z",
+        "keyDescription": "UDEMY"
+      }
+    ]
+  }
+}
