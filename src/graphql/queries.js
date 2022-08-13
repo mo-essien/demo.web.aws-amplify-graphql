@@ -7,16 +7,17 @@ export const getCollection = /* GraphQL */ `
       id
       title
       description
+      slug
       collectionItems {
         items {
           id
+          actionIDs
+          collectionID
           title
           quantity
           done
           createdAt
           updatedAt
-          collectionCollectionItemsId
-          collectionItemCollectionId
         }
         nextToken
       }
@@ -36,13 +37,70 @@ export const listCollections = /* GraphQL */ `
         id
         title
         description
+        slug
         collectionItems {
           nextToken
+        }
+        createdAt
+        createdBy
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const searchCollections = /* GraphQL */ `
+  query SearchCollections(
+    $filter: SearchableCollectionFilterInput
+    $sort: [SearchableCollectionSortInput]
+    $limit: Int
+    $nextToken: String
+    $from: Int
+    $aggregates: [SearchableCollectionAggregationInput]
+  ) {
+    searchCollections(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+      aggregates: $aggregates
+    ) {
+      items {
+        id
+        title
+        description
+        slug
+        collectionItems {
+          items {
+            id
+            quantity
+            title
+            done
+            createdAt
+            createdBy
+            actionIDs
+          }
         }
         createdAt
         updatedAt
       }
       nextToken
+      total
+      aggregateItems {
+        name
+        result {
+          ... on SearchableAggregateScalarResult {
+            value
+          }
+          ... on SearchableAggregateBucketResult {
+            buckets {
+              key
+              doc_count
+            }
+          }
+        }
+      }
     }
   }
 `;
@@ -50,34 +108,22 @@ export const getCollectionItem = /* GraphQL */ `
   query GetCollectionItem($id: ID!) {
     getCollectionItem(id: $id) {
       id
+      actionIDs
+      collectionID
       title
       quantity
       done
-      collection {
-        id
-        title
-        description
-        collectionItems {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       actions {
         items {
           id
           action
           createdAt
           updatedAt
-          collectionItemActionsId
-          actionCollectionItemId
         }
         nextToken
       }
       createdAt
       updatedAt
-      collectionCollectionItemsId
-      collectionItemCollectionId
     }
   }
 `;
@@ -90,23 +136,50 @@ export const listCollectionItems = /* GraphQL */ `
     listCollectionItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        actionIDs
+        collectionID
         title
         quantity
         done
-        collection {
-          id
-          title
-          description
-          createdAt
-          updatedAt
-        }
         actions {
           nextToken
         }
         createdAt
         updatedAt
-        collectionCollectionItemsId
-        collectionItemCollectionId
+      }
+      nextToken
+    }
+  }
+`;
+export const collectionItemByCollection = /* GraphQL */ `
+  query CollectionItemByCollection(
+    $collectionID: ID!
+    $title: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelCollectionItemFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    collectionItemByCollection(
+      collectionID: $collectionID
+      title: $title
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        actionIDs
+        collectionID
+        title
+        quantity
+        done
+        actions {
+          nextToken
+        }
+        createdAt
+        updatedAt
       }
       nextToken
     }
@@ -117,30 +190,8 @@ export const getAction = /* GraphQL */ `
     getAction(id: $id) {
       id
       action
-      collectionItem {
-        id
-        title
-        quantity
-        done
-        collection {
-          id
-          title
-          description
-          createdAt
-          updatedAt
-        }
-        actions {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        collectionCollectionItemsId
-        collectionItemCollectionId
-      }
       createdAt
       updatedAt
-      collectionItemActionsId
-      actionCollectionItemId
     }
   }
 `;
@@ -154,20 +205,8 @@ export const listActions = /* GraphQL */ `
       items {
         id
         action
-        collectionItem {
-          id
-          title
-          quantity
-          done
-          createdAt
-          updatedAt
-          collectionCollectionItemsId
-          collectionItemCollectionId
-        }
         createdAt
         updatedAt
-        collectionItemActionsId
-        actionCollectionItemId
       }
       nextToken
     }
