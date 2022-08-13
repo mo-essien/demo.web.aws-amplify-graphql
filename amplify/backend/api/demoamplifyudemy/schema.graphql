@@ -15,7 +15,9 @@ type Collection @model @auth(rules: [{
   id: ID!
   title: String!
   description: String
-  collectionItems: [CollectionItem] @hasMany
+  slug: String!
+  collectionItems: [CollectionItem] @hasMany(indexName: "byCollection", fields: ["id"])
+  createdBy: String!
 }
 
 type CollectionItem @model @auth(rules: [{
@@ -29,11 +31,13 @@ type CollectionItem @model @auth(rules: [{
   provider: apiKey
 }]) {
   id: ID!
+  actionIDs: [ID]
+  collectionID: ID! @index(name: "byCollection", sortKeyFields: "title")
   title: String!
   quantity: Int
   done: Boolean
-  collection: Collection @hasOne
-  actions: [Action] @hasMany
+  actions: [Action] @hasMany(fields: ["actionIDs"])
+  createdBy: String!
 }
 
 type Action @model @auth(rules: [{
@@ -48,5 +52,4 @@ type Action @model @auth(rules: [{
 }]) {
   id: ID!
   action: String
-  collectionItem: CollectionItem @hasOne
 }
