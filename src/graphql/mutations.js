@@ -10,19 +10,22 @@ export const createCollection = /* GraphQL */ `
       id
       title
       description
+      slug
       collectionItems {
         items {
           id
+          actionIDs
+          collectionID
           title
           quantity
           done
+          createdBy
           createdAt
           updatedAt
-          collectionCollectionItemsId
-          collectionItemCollectionId
         }
         nextToken
       }
+      createdBy
       createdAt
       updatedAt
     }
@@ -37,19 +40,22 @@ export const updateCollection = /* GraphQL */ `
       id
       title
       description
+      slug
       collectionItems {
         items {
           id
+          actionIDs
+          collectionID
           title
           quantity
           done
+          createdBy
           createdAt
           updatedAt
-          collectionCollectionItemsId
-          collectionItemCollectionId
         }
         nextToken
       }
+      createdBy
       createdAt
       updatedAt
     }
@@ -64,19 +70,22 @@ export const deleteCollection = /* GraphQL */ `
       id
       title
       description
+      slug
       collectionItems {
         items {
           id
+          actionIDs
+          collectionID
           title
           quantity
           done
+          createdBy
           createdAt
           updatedAt
-          collectionCollectionItemsId
-          collectionItemCollectionId
         }
         nextToken
       }
+      createdBy
       createdAt
       updatedAt
     }
@@ -89,34 +98,23 @@ export const createCollectionItem = /* GraphQL */ `
   ) {
     createCollectionItem(input: $input, condition: $condition) {
       id
+      actionIDs
+      collectionID
       title
       quantity
       done
-      collection {
-        id
-        title
-        description
-        collectionItems {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       actions {
         items {
           id
           action
           createdAt
           updatedAt
-          collectionItemActionsId
-          actionCollectionItemId
         }
         nextToken
       }
+      createdBy
       createdAt
       updatedAt
-      collectionCollectionItemsId
-      collectionItemCollectionId
     }
   }
 `;
@@ -127,34 +125,23 @@ export const updateCollectionItem = /* GraphQL */ `
   ) {
     updateCollectionItem(input: $input, condition: $condition) {
       id
+      actionIDs
+      collectionID
       title
       quantity
       done
-      collection {
-        id
-        title
-        description
-        collectionItems {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       actions {
         items {
           id
           action
           createdAt
           updatedAt
-          collectionItemActionsId
-          actionCollectionItemId
         }
         nextToken
       }
+      createdBy
       createdAt
       updatedAt
-      collectionCollectionItemsId
-      collectionItemCollectionId
     }
   }
 `;
@@ -165,34 +152,23 @@ export const deleteCollectionItem = /* GraphQL */ `
   ) {
     deleteCollectionItem(input: $input, condition: $condition) {
       id
+      actionIDs
+      collectionID
       title
       quantity
       done
-      collection {
-        id
-        title
-        description
-        collectionItems {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       actions {
         items {
           id
           action
           createdAt
           updatedAt
-          collectionItemActionsId
-          actionCollectionItemId
         }
         nextToken
       }
+      createdBy
       createdAt
       updatedAt
-      collectionCollectionItemsId
-      collectionItemCollectionId
     }
   }
 `;
@@ -204,30 +180,8 @@ export const createAction = /* GraphQL */ `
     createAction(input: $input, condition: $condition) {
       id
       action
-      collectionItem {
-        id
-        title
-        quantity
-        done
-        collection {
-          id
-          title
-          description
-          createdAt
-          updatedAt
-        }
-        actions {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        collectionCollectionItemsId
-        collectionItemCollectionId
-      }
       createdAt
       updatedAt
-      collectionItemActionsId
-      actionCollectionItemId
     }
   }
 `;
@@ -239,30 +193,8 @@ export const updateAction = /* GraphQL */ `
     updateAction(input: $input, condition: $condition) {
       id
       action
-      collectionItem {
-        id
-        title
-        quantity
-        done
-        collection {
-          id
-          title
-          description
-          createdAt
-          updatedAt
-        }
-        actions {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        collectionCollectionItemsId
-        collectionItemCollectionId
-      }
       createdAt
       updatedAt
-      collectionItemActionsId
-      actionCollectionItemId
     }
   }
 `;
@@ -274,30 +206,8 @@ export const deleteAction = /* GraphQL */ `
     deleteAction(input: $input, condition: $condition) {
       id
       action
-      collectionItem {
-        id
-        title
-        quantity
-        done
-        collection {
-          id
-          title
-          description
-          createdAt
-          updatedAt
-        }
-        actions {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        collectionCollectionItemsId
-        collectionItemCollectionId
-      }
       createdAt
       updatedAt
-      collectionItemActionsId
-      actionCollectionItemId
     }
   }
 `;
