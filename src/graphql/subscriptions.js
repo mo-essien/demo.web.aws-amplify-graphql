@@ -7,19 +7,22 @@ export const onCreateCollection = /* GraphQL */ `
       id
       title
       description
+      slug
       collectionItems {
         items {
           id
+          actionIDs
+          collectionID
           title
           quantity
           done
+          createdBy
           createdAt
           updatedAt
-          collectionCollectionItemsId
-          collectionItemCollectionId
         }
         nextToken
       }
+      createdBy
       createdAt
       updatedAt
     }
@@ -31,19 +34,22 @@ export const onUpdateCollection = /* GraphQL */ `
       id
       title
       description
+      slug
       collectionItems {
         items {
           id
+          actionIDs
+          collectionID
           title
           quantity
           done
+          createdBy
           createdAt
           updatedAt
-          collectionCollectionItemsId
-          collectionItemCollectionId
         }
         nextToken
       }
+      createdBy
       createdAt
       updatedAt
     }
@@ -55,19 +61,22 @@ export const onDeleteCollection = /* GraphQL */ `
       id
       title
       description
+      slug
       collectionItems {
         items {
           id
+          actionIDs
+          collectionID
           title
           quantity
           done
+          createdBy
           createdAt
           updatedAt
-          collectionCollectionItemsId
-          collectionItemCollectionId
         }
         nextToken
       }
+      createdBy
       createdAt
       updatedAt
     }
@@ -77,34 +86,23 @@ export const onCreateCollectionItem = /* GraphQL */ `
   subscription OnCreateCollectionItem {
     onCreateCollectionItem {
       id
+      actionIDs
+      collectionID
       title
       quantity
       done
-      collection {
-        id
-        title
-        description
-        collectionItems {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       actions {
         items {
           id
           action
           createdAt
           updatedAt
-          collectionItemActionsId
-          actionCollectionItemId
         }
         nextToken
       }
+      createdBy
       createdAt
       updatedAt
-      collectionCollectionItemsId
-      collectionItemCollectionId
     }
   }
 `;
@@ -112,34 +110,23 @@ export const onUpdateCollectionItem = /* GraphQL */ `
   subscription OnUpdateCollectionItem {
     onUpdateCollectionItem {
       id
+      actionIDs
+      collectionID
       title
       quantity
       done
-      collection {
-        id
-        title
-        description
-        collectionItems {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       actions {
         items {
           id
           action
           createdAt
           updatedAt
-          collectionItemActionsId
-          actionCollectionItemId
         }
         nextToken
       }
+      createdBy
       createdAt
       updatedAt
-      collectionCollectionItemsId
-      collectionItemCollectionId
     }
   }
 `;
@@ -147,34 +134,23 @@ export const onDeleteCollectionItem = /* GraphQL */ `
   subscription OnDeleteCollectionItem {
     onDeleteCollectionItem {
       id
+      actionIDs
+      collectionID
       title
       quantity
       done
-      collection {
-        id
-        title
-        description
-        collectionItems {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       actions {
         items {
           id
           action
           createdAt
           updatedAt
-          collectionItemActionsId
-          actionCollectionItemId
         }
         nextToken
       }
+      createdBy
       createdAt
       updatedAt
-      collectionCollectionItemsId
-      collectionItemCollectionId
     }
   }
 `;
@@ -183,30 +159,8 @@ export const onCreateAction = /* GraphQL */ `
     onCreateAction {
       id
       action
-      collectionItem {
-        id
-        title
-        quantity
-        done
-        collection {
-          id
-          title
-          description
-          createdAt
-          updatedAt
-        }
-        actions {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        collectionCollectionItemsId
-        collectionItemCollectionId
-      }
       createdAt
       updatedAt
-      collectionItemActionsId
-      actionCollectionItemId
     }
   }
 `;
@@ -215,30 +169,8 @@ export const onUpdateAction = /* GraphQL */ `
     onUpdateAction {
       id
       action
-      collectionItem {
-        id
-        title
-        quantity
-        done
-        collection {
-          id
-          title
-          description
-          createdAt
-          updatedAt
-        }
-        actions {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        collectionCollectionItemsId
-        collectionItemCollectionId
-      }
       createdAt
       updatedAt
-      collectionItemActionsId
-      actionCollectionItemId
     }
   }
 `;
@@ -247,30 +179,8 @@ export const onDeleteAction = /* GraphQL */ `
     onDeleteAction {
       id
       action
-      collectionItem {
-        id
-        title
-        quantity
-        done
-        collection {
-          id
-          title
-          description
-          createdAt
-          updatedAt
-        }
-        actions {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        collectionCollectionItemsId
-        collectionItemCollectionId
-      }
       createdAt
       updatedAt
-      collectionItemActionsId
-      actionCollectionItemId
     }
   }
 `;
