@@ -7,52 +7,70 @@
 	width: 100%;
 }
 
+.App :not( input, textarea ) { color: #ffffff; }
 .App > * { padding: 0 2em; }
 
 .App > .Nav {
 	align-items: center;
 	display: flex;
 	justify-content: space-between;
+	padding: 1em 2em;
 }
 
 .App > .Nav > .Logo { font-weight: 700; }
 .App > .Nav > .Auth {
-	cursor: pointer;
+	display: flex;
 	font-size: 0.75em;
 }
+.App > .Nav > .Auth .profile_picture {
+	align-items: center;
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+	display: flex;
+	height: 55px;
+	justify-content: center;
+	margin: 0 1em;
+	outline: #ffffff solid 1px;
+	outline-offset: 5px;
+	overflow: hidden;
+}
+.App > .Nav > .Auth > :nth-child(2) {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.App > .Nav > .Auth > :nth-child(2) > :nth-child(1) {
+	border-bottom: 1px solid #fefefe;
+	font-size: 1.25em;
+	font-weight: 700;
+}
+.App > .Nav > .Auth > :nth-child(2) > :nth-child(2) { cursor: pointer; }
 
-.App > .Collections {
+.App .Collections {
 	flex-grow: 1;
 	position: relative;
 }
-/* .App > .Collections > .Collection > :not(.Author) { display: none; } */
-.App > .Collections > .Collection > .Viewers { padding: 0 4em; }
-.App > .Collections > .Collection.Active > :not(.Author) { display: initial; }
+/* .App .Collections > .Collection > :not(.Author) { display: none; } */
+.App .Collections > .Collection > .Viewers { padding: 0 4em; }
+.App .Collections > .Collection.Active > :not(.Author) { display: initial; }
 
-.App > .Collections > .Collection > .Brief:not(:last-child) { margin-bottom: 1em; }
+.App .Collections > .Collection > .Brief * { color: #ffffff; }
+.App .Collections > .Collection > .Brief:not(:last-child) { margin-bottom: 1em; }
 
-.App > .Collections > .Collection > .Brief > .crud_actions {
+.App .Collections > .Collection > .Brief > .crud_actions {
 	color: #ffffff;
 	display: flex;
 	justify-content: flex-end;
 }
-.App > .Collections > .Collection > .Brief > .crud_actions > * {
-	align-items: center;
-	aspect-ratio: 1 / 1;
-	border-radius: 5px;
-	display: flex;
-	height: 2.25em;
-	justify-content: center;
-}
-.App > .Collections > .Collection > .Brief > .crud_actions > .add { background-color: green;}
-.App > .Collections > .Collection > .Brief > .crud_actions > .delete { background-color: red;}
-.App > .Collections > .Collection > .Brief > .name {
+.App .Collections > .Collection > .Brief > .crud_actions > * { cursor: pointer; }
+.App .Collections > .Collection > .Brief > .crud_actions > :not(:last-child) { margin-right: 1rem; }
+.App .Collections > .Collection > .Brief .name {
 	font-size: 1.15em;
 	font-weight: 700;
 }
-.App > .Collections > .Collection > .Brief > .date_created { font-weight: 300; }
+.App .Collections > .Collection > .Brief .date_created { font-weight: 300; }
 
-.App > .Collections > .NewEntry {
+.App .Collections > .NewEntry {
 	align-items: center;
 	aspect-ratio: 1 / 1;
 	background: rgba(255, 255, 255, 0.25);
@@ -65,7 +83,7 @@
 	position: absolute;
 	right: 1em;
 }
-.App > .Collections > .NewEntry:hover { background: rgba(255, 255, 255, 0.5); }
+.App .Collections > .NewEntry:hover { background: rgba(255, 255, 255, 0.5); }
 
 .App > .Modal-Open {
 	align-items: center;
@@ -88,3 +106,5 @@
 	padding: 1em;
 	width: 60%;
 }
+
+.App > .upload_image { display: none; }
