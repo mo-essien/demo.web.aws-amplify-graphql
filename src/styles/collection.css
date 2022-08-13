@@ -1,0 +1,20 @@
+#page_collection_component {
+	display: flex;
+	flex-direction: column;
+}
+
+#page_collection_component > #add_item {
+	align-self: flex-end;
+}
+
+#page_collection_component #collection_items {
+	margin: 2rem;
+}
+#page_collection_component #collection_items > :not(:last-child) { margin-bottom: 1rem; }
+#page_collection_component #collection_items > .collection_item > .collection_item_controls {
+	align-items: center;
+	display: flex;
+	justify-content: flex-end;
+}
+#page_collection_component #collection_items > .collection_item > .collection_item_controls > * { cursor: pointer;  }
+#page_collection_component #collection_items > .collection_item > .collection_item_controls > :not(:last-child) { margin-right: 1rem; }
