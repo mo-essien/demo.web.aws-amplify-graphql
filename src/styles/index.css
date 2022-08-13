@@ -3,6 +3,7 @@
 *::before {
   box-sizing: border-box;
   cursor: default;
+  text-decoration: none;
 }
 
 body {
