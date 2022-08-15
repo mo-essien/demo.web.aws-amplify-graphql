@@ -19,7 +19,7 @@ function Home () {
   const [newCollectionData, setNewCollectionData] = useState({})
   const [updateCollectionData, setUpdateCollectionData] = useState({})
   const [affectedCollection, setAffectedCollection] = useState('')
-	const user = useState(localStorage.getItem("CognitoIdentityServiceProvider.tgs7u7o834c98dbqu0mbvklff.mo-essien.userData"))
+	const user = useState(localStorage.getItem("appsync_app_user"))
 
   // component state variables
   const [modal_form_createCollection, setModalFormCreateCollection] = useState(false)
@@ -182,7 +182,7 @@ function Home () {
             return (
               <div key={ collection.id } className="Brief">
                 {
-                  JSON.parse(user[0]).Username === collection.createdBy ?
+                  user === collection.createdBy ?
                   <div className='crud_actions'>
                     <div className='update' onClick={ () => { PREPARE_updateCollection(collection) } }>| Update</div>
                     <div className='delete' onClick={ () => { DELETE_collection(collection.id) } }>| Delete</div>
