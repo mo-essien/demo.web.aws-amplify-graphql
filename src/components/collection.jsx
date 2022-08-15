@@ -11,10 +11,10 @@ import "../styles/collection.css"
 function Collection() {
 	const params = useParams()
 	const [data, setData] = useState([])
-	const user = useState(localStorage.getItem("CognitoIdentityServiceProvider.tgs7u7o834c98dbqu0mbvklff.mo-essien.userData"))
+	const user = useState(localStorage.getItem("appsync_app_user"))
 	const [modal_form_createCollectionItem, setModal_form_createCollectionItem] = useState(false)
 	const [modal_form_updateCollectionItem, setModal_form_updateCollectionItem] = useState(false)
-	const [formData_createCollectionItem, setFormData_createCollectionItem] = useState({ "createdBy": JSON.parse(user[0]).Username })
+	const [formData_createCollectionItem, setFormData_createCollectionItem] = useState({ "createdBy": user })
 	const [formData_updateCollectionItem, setFormData_updateCollectionItem] = useState({})
 
 	// create, read, update and delete operations on API
@@ -36,7 +36,7 @@ function Collection() {
 			await READ_collection();
 			setFormData_createCollectionItem({
 				collectionID: data[0].id,
-				createdBy: JSON.parse(user[0]).Username
+				createdBy: user
 			})
 		} catch (err) { console.log('error creating collection...', err) }
 		
@@ -117,7 +117,7 @@ function Collection() {
 											return (
 												<div key={ item.id } className="collection_item">
 													{
-														JSON.parse(user[0]).Username === item.createdBy ?
+														user === item.createdBy ?
 														<div className='collection_item_controls'>
 															<div onClick={ () => {
 																setModal_form_updateCollectionItem(true)
