@@ -19,6 +19,10 @@ import DEFAULT_profileImage from './images/WOOLitalianwoolcashmerepiarapantslook
 Amplify.configure(AWS_AMPLIFY_CONFIG);
 
 function Layout ({ children, signOut, user }) {
+	if (user) {
+		localStorage.setItem("appsync_app_user", user.username)
+	}
+	
 	// data variables
   	const [profileImage, setProfileImage] = useState(DEFAULT_profileImage)
 
